@@ -76,15 +76,17 @@ const MovieGrid = () => {
           setFilteredMovies(filteredMovies)
         }else{
           setFilteredMovies(movies)
+          setQuery('')
         }
     }
 
     const highlightSearchTerm = (name) => {
-      if(query){
+      if(query.trimEnd().length ){
         const regex = new RegExp(`(${query})`, 'gi'); // Case insensitive match
         return name.replace(regex, '<mark>$1</mark>'); // Wrap matched text in <mark> tags for highlighting
       }
       return name
+    
     };
   
 
@@ -99,7 +101,7 @@ const MovieGrid = () => {
               src={`https://test.create.diagnal.com/images/${movie['poster-image']??'placeholder_for_missing_posters.png'}`}
               alt={movie.name}
             />
-           <h3 dangerouslySetInnerHTML={{ __html: highlightSearchTerm(movie.name) }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: highlightSearchTerm(movie.name) }}></h3>
           </div>
         ))}
       </div>
