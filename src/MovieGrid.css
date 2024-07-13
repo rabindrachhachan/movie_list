@@ -1,0 +1,86 @@
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding: 16px;
+  padding-top: 80px; /* Add padding to account for the fixed header */
+  overflow-y: auto;
+}
+
+/* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+@media screen and (max-width: 600px) {
+  .movie-grid {
+    -webkit-overflow-scrolling: touch; /* Enable momentum scrolling for iOS */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .movie-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+}
+
+.movie-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color:#171717;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.movie-item img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.movie-item h3 {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #FFFFFF;
+  align-self: flex-start;
+}
+
+
+/* Mobile portrait view */
+
+@media (max-width: 1024px) and (orientation: portrait) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .movie-item {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
+  
+  .movie-item {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    padding: 4px;
+  }
+  
+  .movie-item {
+    padding: 4px;
+  }
+}

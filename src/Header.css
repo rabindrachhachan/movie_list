@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: #171717;
+  color: #FFFFFF;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensure it is above other elements */
+  box-sizing: border-box; /* Include padding in the element's total width */
+}
+
+.header-center {
+  flex: 1;
+  text-align: center;
+}
+
+.icon-container {
+  background-color: transparent; /* Set background color to black */
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #FFFFFF; /* Ensure icon color is white for contrast */
+}
+
+.cross-icon {
+  font-size: 1rem;
+  cursor: pointer;
+  color: #FFFFFF; /* Ensure icon color is white for contrast */
+}
+
+h1 {
+  font-size: 1.2rem;
+  margin: 0;
+  font-family: 'Titillium Web', sans-serif;
+  flex-grow: 1; /* Allow title to take available space */
+  text-align: center;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: transparent; 
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 36px;
+}
+
+.search-input-container input {
+  flex: 1;
+  border: none;
+  padding: 8px;
+  outline: none;
+  background-color: transparent; 
+  color: #FFFFFF; 
+}
