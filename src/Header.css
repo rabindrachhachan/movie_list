@@ -11,12 +11,20 @@
   left: 0;
   z-index: 1000; /* Ensure it is above other elements */
   box-sizing: border-box; /* Include padding in the element's total width */
+  height: 80px;
 }
 
 .header-center {
   flex: 1;
   text-align: center;
 }
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
 
 .icon-container {
   background-color: transparent; /* Set background color to black */
