@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FaArrowLeft, FaSearch, FaTimes } from 'react-icons/fa'; // Import icons
 import './Header.css';
+const MAX_SEARCH_LENGTH = 50;
+const searchHints = ['The Birds', 'Rear Window', 'Family Pot']; 
 
 const Header = ({ onSearch }) => {
   const [searchMode, setSearchMode] = useState(false); // State to manage search mode
@@ -14,13 +16,8 @@ const Header = ({ onSearch }) => {
   // Function to handle input change in search input box
   const handleInputChange = (event) => {
     setSearchInput(event.target.value); 
-  };
+    onSearch(event.target.value)
 
-  // Function to execute search action
-  const handleSearch = () => {
-    onSearch(searchInput); 
-    resetState()
-   
   };
 
   const resetState =()=>{
@@ -30,13 +27,13 @@ const Header = ({ onSearch }) => {
 
   // Function to handle click on back icon
   const handleBackIconClick = () => {
-    setSearchMode(false); // Exit search mode
-    setSearchInput(''); // Clear search input
+    resetState();
   };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleSearch();
+      onSearch(searchInput); 
+      resetState()
     }
   };
 
@@ -58,10 +55,11 @@ const Header = ({ onSearch }) => {
             <FaSearch className="cross-icon" />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder={`Search movie ${searchHints.toString()}...`}
               value={searchInput}
               onChange={handleInputChange}
               onKeyPress={handleKeyPress} 
+              maxLength={MAX_SEARCH_LENGTH}
             />
             {searchInput && ( // Render cross icon if search input is not empty
               <div className="icon-container" onClick={clearSearch}>

@@ -84,3 +84,8 @@
     padding: 4px;
   }
 }
+
+mark {
+  background-color: #ffffcc;
+  font-weight: bold;
+}

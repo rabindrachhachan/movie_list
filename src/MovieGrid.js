@@ -7,8 +7,9 @@ const MovieGrid = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
   const loadMoreRef = useRef(null);
+  const [query,setQuery] = useState('')
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   // Function to fetch movies
   const fetchMovies = async (page) => {
@@ -20,6 +21,12 @@ const MovieGrid = () => {
       }
       const data = await response.json();
       setMovies((prevMovies) => [...prevMovies, ...data.page['content-items'].content]);
+
+      const filteredData = [...data.page['content-items'].content].filter((movie) =>
+        movie?.name?.toLowerCase().includes(query?.toLowerCase())
+      );
+      setFilteredMovies((prevMovies) => [...prevMovies, ...filteredData])
+
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -59,14 +66,31 @@ const MovieGrid = () => {
       };
     }, [loadMoreRef.current]);
 
-  // Filtered movies based on search query
-  const filteredMovies = movies.filter((movie) =>
-    movie.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+    const handleSearch =(query)=>{
+        // Filtered movies based on search query
+        if(query){
+          const filteredMovies = movies.filter((movie) =>
+            movie.name.toLowerCase().includes(query.toLowerCase())
+          );
+          setQuery(query)
+          setFilteredMovies(filteredMovies)
+        }else{
+          setFilteredMovies(movies)
+        }
+    }
+
+    const highlightSearchTerm = (name) => {
+      if(query){
+        const regex = new RegExp(`(${query})`, 'gi'); // Case insensitive match
+        return name.replace(regex, '<mark>$1</mark>'); // Wrap matched text in <mark> tags for highlighting
+      }
+      return name
+    };
+  
 
   return (
     <div>
-      <Header onSearch={(query) => setSearchQuery(query)} />
+      <Header onSearch={handleSearch} />
       <div className="movie-grid">
         {filteredMovies.map((movie, index) => (
           <div className="movie-item" key={index}>
@@ -75,7 +99,7 @@ const MovieGrid = () => {
               src={`https://test.create.diagnal.com/images/${movie['poster-image']??'placeholder_for_missing_posters.png'}`}
               alt={movie.name}
             />
-            <h3>{movie.name}</h3>
+           <h3 dangerouslySetInnerHTML={{ __html: highlightSearchTerm(movie.name) }}></h3>
           </div>
         ))}
       </div>

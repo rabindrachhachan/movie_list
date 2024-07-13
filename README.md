@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+### Release Notes - MovieGrid Component v1.0.0
+
+#### New Features:
+- Implemented dynamic fetching of movies from an external API (`https://test.create.diagnal.com`) based on pagination.
+- Added search functionality allowing users to filter movies by name, with real-time updates.
+- Integrated lazy loading using Intersection Observer for seamless pagination when scrolling.
+- Introduced a `LazyImage` component for optimized loading of movie posters with placeholder support.
+- Enhanced search experience with highlighted search terms in movie names for improved visibility.
+- Responsive design optimized for desktop and mobile viewing, supporting up to three columns per row.
+- Included unit tests for critical functionalities ensuring reliability and stability across different scenarios.
+
+#### Deployment Notes:
+- This version (`v1.0.0`) of the MovieGrid component is deployed and available for use.
+
 <img width="596" alt="image" src="https://github.com/user-attachments/assets/f2873696-4b19-404b-8d18-2eff9f8fc7a8">
 
 <img width="568" alt="image" src="https://github.com/user-attachments/assets/f318bd25-2744-4a18-9111-4aef5ae79c66">
